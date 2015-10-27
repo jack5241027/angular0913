@@ -1,0 +1,8 @@
+  商品名稱: <input type="text" ng-model="m.PName"><br>
+  商品價格: <input type="number" ng-model="m.Price"><br>
+  購買數量: <input type="number" ng-model="m.Qty"><br>
+  <br>  
+  您購買了 <strong style="color:red">{{m.PName||'N/A'}}</strong> 商品，買了 {{m.Qty||0}} 件，單價 {{m.Price||0 | number}} 元，共 {{m.subtotal(m.Price, m.Qty) | currency:'NT$ '}} 元。<br>
+  <br>
+  <button ng-click="m.add()">加入購物車</button>
+  <button ng-click="m.carts=[]">清空購物車</button>

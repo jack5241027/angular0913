@@ -1,0 +1,23 @@
+{
+  "name": "class",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browser-sync start --server --files='*'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gist.github.com/f31bb62430f0b7cd1e3c.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gist.github.com/f31bb62430f0b7cd1e3c"
+  },
+  "homepage": "https://gist.github.com/f31bb62430f0b7cd1e3c",
+  "dependencies": {
+    "browser-sync": "^2.9.3"
+  }
+}

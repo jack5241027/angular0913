@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="app">
 <head>
   
   <script src="//code.jquery.com/jquery.min.js"></script>
@@ -7,25 +7,48 @@
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css" />
   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
   
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
   
   <link href="style.css" rel="stylesheet" type="text/css" />
-  <script src="main.js"></script>
-  
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="app.module.js"></script>
+  <script src="app.controllers.js"></script>
+  <script src="app.services.js"></script>
+  <script src="app.directives.js"></script>
+  <script src="app.values.js"></script>
+  <script>
+    function getVersion(btn){
+      var $injector = angular.element(btn).injector();
+      var version = $injector.get('version');
+      console.log($injector);
+      console.log(version);
+    }
+    function getPName(btn){
+      var $scope = angular.element(btn).scope();
+      console.log($scope);
+      $scope.$apply(function(){
+        $scope.item.PName += ' !';
+      });
+    }
+  </script>
   <meta charset="utf-8">
   <title>【AngularJS 開發實戰：新手入門篇】實作練習</title>
   
 </head>
 <body ng-controller="MainCtrl as m">
-
-  商品名稱: <input type="text" ng-model="m.PName"><br>
-  商品價格: <input type="number" ng-model="m.Price"><br>
-  購買數量: <input type="number" ng-model="m.Qty"><br>
-  <br>  
-  您購買了 <strong style="color:red">{{m.PName||'N/A'}}</strong> 商品，買了 {{m.Qty||0}} 件，單價 {{m.Price||0 | number}} 元，共 {{m.subtotal(m.Price, m.Qty) | currency:'NT$ '}} 元。<br>
-  <br>
-  <button ng-click="m.add()">加入購物車</button>
-  <button ng-click="m.carts=[]">清空購物車</button>
+  <pre>
+    {{m.ipad|json}}
+  </pre>
+  <hr>
+  {{myName}}
+  <hr>
+  <button onclick="getVersion(this)"> 取得目前app下的version </button>
+  <hr>
+  <pre>
+    {{m.version|json}}
+  </pre>
+  <hr>
+  <mycart></mycart>
   <br><br>
   <label><input type="checkbox" ng-model="m.IsDebug"> 啟用偵錯</label>
   <pre ng-show="m.IsDebug" ng-bind="m.carts|json"></pre>
@@ -64,6 +87,7 @@
                 ng-show="item.IsEdit">完成</button>
         <button ng-click="m.editCancel(item)"
                 ng-show="item.IsEdit">取消</button>
+        <button onClick = 'getPName(this)'> 取得目前商品名稱 </button>
       </td>
       <td>{{$index+1}}</td>
       <td>{{item.PName}}</td>
